@@ -71,5 +71,32 @@ GROUP BY
     client_id;
 ```
 
+## 📅 - Agendamento de Jobs e Automação com Dataform
+
+O Dataform permite agendar a execução de scripts SQL e a atualização automática das tabelas e views. Utilize Dataform para criar pipelines de dados que se atualizam regularmente, garantindo que seus dados estejam sempre atualizados sem intervenção manual.
+
+
+## ⚠️ - Monitoramento e Alertas para Performance
+
+Implementação de monitoramento e alertas para identificar e reagir rapidamente a problemas de desempenho e consumo de recursos. Utilize as métricas e logs disponíveis no GCP para monitorar a performance das suas consultas e a saúde geral do seu ambiente BigQuery.
+
+## 📊 - Uso de Tabelas Temporárias para Consultas Complexas
+
+Essa e alto descritiva pois ajuda muito no consumo de dados pois assim não será armazenado e após a consulta ela irá sumir. Isso pode melhorar a performance e facilitar a depuração
+
+## ☁️ - Bucket automatizado
+
+Por fim a squad teve como ideia a automatização do bucket para que ele ligue em determinados horarios de consultas e depois desligue para que o consumo seja menor e existem algumas vantagens e desavantagens 
+
+<b>Vantagens:</b>
+- 1 - Redução de Custos: Se o bucket não é utilizado constantemente, você pode reduzir custos associados ao armazenamento e às operações.
+
+- 2 - Gerenciamento de Recursos: Evita a utilização desnecessária de recursos e pode ajudar a manter o ambiente mais organizado.
+
+<b>Desvantagens:</b>
+
+- 1 - Complexidade Adicional: Gerenciar o tempo de atividade e inatividade dos buckets pode adicionar complexidade ao gerenciamento do projeto.
+
+- 2 - Risco de Acesso: Se o bucket precisar estar disponível fora do horário programado, pode haver problemas com o acesso inesperado.
 
 
