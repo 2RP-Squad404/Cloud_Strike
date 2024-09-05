@@ -11,8 +11,3 @@
 - Gabriel Roberto
 - Julia Torres
 - João Barbosa
-
-
-
-
-
