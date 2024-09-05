@@ -47,6 +47,29 @@ CLUSTER BY client_id AS
 SELECT * FROM `project.dataset.raw_purchases`;
 ```
 
+## 👀 - Uso de Views Materializadas
+
+As views materializadas armazenam resultados de consultas em uma tabela física e atualizam esses resultados conforme necessário. Elas são úteis para melhorar a performance de consultas complexas e frequentes, pois evitam a recomputação de resultados e utilizam os dados pré-calculados.
+
+<b>Exemplo em Código:</b>
+
+- Criação de View Materializada:
+
+```sql
+CREATE MATERIALIZED VIEW `project.dataset.v_compras_clientes_mat` AS
+SELECT
+    client_id,
+    SUM(price * amount * (1 - discount_applied)) AS total_price,
+    ARRAY_AGG(purchase_location ORDER BY COUNT(purchase_location) DESC LIMIT 1)[OFFSET(0)] AS most_purchase_location,
+    MIN(purchase_date) AS first_purchase,
+    MAX(purchase_date) AS last_purchase,
+    CURRENT_DATE() AS date_today,
+    FORMAT_TIMESTAMP('%m%Y', CURRENT_TIMESTAMP()) AS anomes_today
+FROM
+    `project.dataset.purchases`
+GROUP BY
+    client_id;
+```
 
 
 
