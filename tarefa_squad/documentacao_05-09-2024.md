@@ -12,6 +12,9 @@
 - Julia Torres
 - João Barbosa
 
+# Configuração de Ambiente no GCP e Análise de Dados com BigQuery: Consolidação e Visualização de Campanhas e Compras
+
+
 
 
 
