@@ -1,35 +1,21 @@
-# 🏢 Organização no GCP
+# 🏢 Gestão no Google Cloud Plataform
 
+**Arquitetura GCP (Google Cloud Platform)**
 ![Estruturação do GCP](../img/img1.jpeg)
 
-## Dificuldades no gerenciamento de projetos sem Organização
 
-* Gerenciamento de projetos e custos sem unificação
-
-* Prejudica a consistência de políticas
-
-* Complica auditorias e compliance
-
-* Necessidade de repetir tarefas entre projetos
+**Hierarquia GCP (Google Cloud Platform)**
+![Imagem](../img//hierarquia.jpeg)
 
 
-## Benefícios do uso da Organização
+## Importância da Organização no GCP
+1. **Controle Centralizado**: Facilita a gestão de acessos, segurança e monitoramento de custos em todos os projetos e squads.
 
-* Organização e estruturação através de pastas e projetos
-
-* Maior segurança dos dados
-
-* Hierarquia clara, com pastas e projetos
-
-* Políticas de segurança centralizadas
-
-* Capacidade de compartilhar recursos entre projetos
-
-* Melhor visualização de recursos e custos
-
-* Pemissionamento via tags
-
-* Facilidade no gerenciamento de grupo ou pessoas
+2. **Segurança e Conformidade**: Implementação mais simples de políticas de segurança e compliance em toda a organização.
+3. **Governança de Dados**: Ferramentas como Dataplex funcionam de forma mais eficiente e permitem a governança de dados de maneira centralizada.
+4. **Faturamento Consolidado**: A gestão de custos é mais clara e permite uma melhor alocação de orçamento entre squads e equipes.
+5. **Escalabilidade**: Facilita o crescimento e a adição de novos projetos, mantendo a governança e segurança consistentes.
+6. **Automação Simplificada**: A integração de serviços e a automação de processos são mais seguras e fáceis de configurar em um ambiente organizacional.
 
 ## Google Admin Console
 

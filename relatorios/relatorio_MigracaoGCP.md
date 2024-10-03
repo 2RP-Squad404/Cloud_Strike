@@ -3,7 +3,7 @@
 A governança de dados no Google Cloud Platform (GCP) é essencial para a organização eficaz das informações, sendo estruturada em torno de pastas e projetos. A arquitetura do GCP permite que as organizações definam hierarquias claras, onde as pastas funcionam como contêineres para projetos, facilitando a gestão e a aplicação de políticas de governança. Essa estrutura promove um controle centralizado sobre acesso e permissões, assegurando que as práticas de segurança e conformidade sejam seguidas. Assim, a relação entre governança de dados e a arquitetura do GCP não apenas otimiza o gerenciamento de recursos, mas também fortalece a integridade e a proteção dos dados dentro da organização.
 
 **Arquitetura GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/arquitetura.jpeg)
+![Imagem](../img/arquitetura.jpeg)
 
 ## Importância Organizacional
 1. **Controle Centralizado**: Facilita a gestão de acessos, segurança e monitoramento de custos em todos os projetos e squads.
@@ -15,19 +15,19 @@ A governança de dados no Google Cloud Platform (GCP) é essencial para a organi
 6. **Automação Simplificada**: A integração de serviços e a automação de processos são mais seguras e fáceis de configurar em um ambiente organizacional.
 
 **Hierarquia GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/hierarquia.jpeg)
+![Imagem](../img/hierarquia.jpeg)
 
 **Organização GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/organização.jpeg)
+![Imagem](../img/organização.jpeg)
 
 **Pastas GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/pasta.jpeg)
+![Imagem](../img/pasta.jpeg)
 
 **Projeto GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/projeto.jpeg)
+![Imagem](../img/projeto.jpeg)
 
 **Papéis GCP (Google Cloud Platform)**
-![Imagem](/relatorios/migracao_GCP/papeis.jpeg)
+![Imagem](../img/papeis.jpeg)
 #
 ## Fluxograma de migração (sem processamento de dados) v.01
 ```mermaid

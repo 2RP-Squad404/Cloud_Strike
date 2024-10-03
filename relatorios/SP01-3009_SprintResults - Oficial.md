@@ -18,6 +18,47 @@ Foram realizadas atividades referente a criação de regras de permissionamento 
 <br/>
 <br/>
 
+## Fluxograma de migração (sem processamento de dados) v.02
+
+```mermaid
+flowchart TD
+    subgraph Migração de Dados
+        A[Cloudera] -->|Transf. de Dados| B[BigQuery - Armazenar Dados]
+        B --> C[Dataplex - Catalogação e Governança]
+    end
+
+    subgraph Segurança e Permissões
+        C -->|Criptografia e Mascaramento| D[DLP - Mascaramento de Dados Sensíveis]
+        C -->|Policy Tags e IAM| E[Controle de Acesso - IAM + Tags]
+        E --> F[Usuários/Grupos de Acesso - DataEng, DataAnalytic, DevOps, DBA, FinOps]
+        E --> G[Permissões por Tags - Área e Funções]
+    end
+
+    subgraph Automação de Processos
+        H[Cloud Scheduler] -->|Pub/Sub| I[Pub/Sub - Mensagens Criptografadas]
+        I -->|Cloud Functions| J[Cloud Functions - Descriptografia e Processamento]
+    end
+
+    subgraph Processamento e Views
+        B --> K[BigQuery API - Consultar Dados Eventos]
+        K -->|Python Script| L[VertexAI - Geração de Query Automática]
+        L --> M[Upload Query - BigQuery]
+        M -->|Views Automatizadas| N[BigQuery Views]
+    end
+
+    subgraph Governança e Monitoramento
+        C --> O[Dataplex - Monitoramento de Dados]
+        O --> P[Cloud Monitoring - Alertas e Dashboards]
+        P -->|Exportação de Métricas| Q[BigQuery - Armazenar Métricas]
+        Q --> R[ETL - Validação de Reservas e Distribuição de Slots]
+    end
+
+    subgraph Otimização de Custos e Labels
+        R --> S[Dataform - Implementação de Labels e Tagueamentos]
+        S --> T[Redução de Custos - Análise e Otimização de Slots BigQuery]
+    end
+```
+
 ## 🛡️ Mascaramento de dados no BigQuery
 O mascaramento de dados no BigQuery pode ser realizados de diversas formas, porém a forma que parece ser mais efetiva e de menor custo é utilizando o DLP (Data Loss Prevention). 
 Durante a sprint testamos diversas formas de realizar essa atividade, sendo elas:
@@ -86,7 +127,6 @@ Ao ter a catalogação dos dados no dataplex com as tags necessárias, é possí
 ![Tags em Colunas](../img/column_tag.png)
 
 * Necessário **conta Organizacional**.
-
 
 
 ## 🏢 [Organização GCP](../relatorios/Organização_GCP.md)
