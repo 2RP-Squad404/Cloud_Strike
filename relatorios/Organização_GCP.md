@@ -39,22 +39,22 @@ Possui funcionalidades de monitoramento e relatórios ajudam na tomada de decis�
 
 ## Grupos
 
-*Gerenciamento de grupos via Admin*
+**Gerenciamento de grupos via Admin**
 ![Grupos via Amin](../img/img7.jpeg)
 
-*Gerenciamento de grupos via GCP*
+**Gerenciamento de grupos via GCP**
 ![Grupos via GCP](../img/img8.jpeg)
 
-*Grupo no GCP*
+**Grupo no GCP**
 ![Dentro do grupo no GCP](../img/img9.jpeg)
 
 ## PAM
 
-*Gerenciador de permissões temporárias*
+**Gerenciador de permissões temporárias**
 ![Gerenciador PAM](../img/img10.jpeg)
 
 ## Migração de projetos
 
-*Gerenciador de recursos*
+**Gerenciador de recursos**
 ![Gerenciador de recursos](../img/img11.jpeg)
 
