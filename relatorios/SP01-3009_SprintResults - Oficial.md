@@ -1,9 +1,11 @@
-# Relatório SP01-3009 / Cloud Strike
+# Relatório SP01-3009 / Cloud Strike  
 
-## Objetivo
+## 🎯 Objetivo
 Foram realizadas atividades referente a criação de regras de permissionamento por **grupos** e **tags**, mascaramento de *dados sensíveis* do **BigQuery** com o **DLP (Data Loss Protection)** e a utilização de uma **organização** no ambiente **GCP**.
+<br/>
+<br/>
 
-## Tecnologias
+## 🌐 Tecnologias
 * **Python 3**
 
 * **Google Cloud Plataform**
@@ -13,8 +15,10 @@ Foram realizadas atividades referente a criação de regras de permissionamento 
 * **APIs do GCP e BigQuery**
 
 * **APIs do Pub/Sub e Cloud Functions**
+<br/>
+<br/>
 
-## Mascaramento de dados no BigQuery
+## 🛡️ Mascaramento de dados no BigQuery
 O mascaramento de dados no BigQuery pode ser realizados de diversas formas, porém a forma que parece ser mais efetiva e de menor custo é utilizando o DLP (Data Loss Prevention). 
 Durante a sprint testamos diversas formas de realizar essa atividade, sendo elas:
 
@@ -29,63 +33,61 @@ Durante a sprint testamos diversas formas de realizar essa atividade, sendo elas
 ![Dados mascarados via Cloud Run com Scheduler](../img/mock_data_mask.png)
 
 * **Utilização do DLP para mascaramento no BigQuery via python -** Está andamento a criação de um script `python` para mascarar os dados de tabelas do BigQuery utilizando o DLP. Atualmente existe apenas a necessidade de autenticar o permissionamento e autenticação de usuário para ser possível realizar os primeiros testes.
+<br/>
+<br/>
+
+## 🔐 Criptografia de mensagens do Pub/Sub
+
+### > Fluxo
+1. **Cloud Scheduler**: Agendador envia mensagem.
+2. **Pub/Sub**: Tópico recebe e distribui.
+3. **Cloud Functions**: Processa a mensagem.
+
+### > Mensagens: Criptografia Personalizada
+- **Definição**: Criptografia aplicada às mensagens antes do envio.
+- **Exemplo**: Uso de AES (Advanced Encryption Standard) para garantir acesso apenas a destinatários autorizados.
+
+### > Criação do temporizador
+
+![Cloud Scheduler](../img/image-2.png)
+
+### > Criação da função / Código (Python)
+![Cloud Functions](../img/image.png)
 
 
-##  Organização no GCP
+### > 👨‍💻 Código utilizado
 
-![Estruturação do GCP](../img/img1.jpeg)
-
-### > Dificuldades no gerenciamento de projetos sem Organização
-
-* Gerenciamento de projetos e custos sem unificação
-
-* Prejudica a consistência de políticas
-
-* Complica auditorias e compliance
-
-* Necessidade de repetir tarefas entre projetos
+```python
+import base64
+import functions_framework
 
 
-### > Benefícios do uso da Organização
+@functions_framework.cloud_event
+def funcao_criptografia(cloud_event):
+    # Parte do código que criptografa
+    encrypted_message = cloud_event.data["message"]["data"]
+    print(f"Mensagem criptografada: {encrypted_message}")
 
-* Organização e estruturação através de pastas e projetos
+    # Parte do código que descriptografa
+    decoded_message = base64.b64decode(encrypted_message)
+    print(decoded_message)
+```
 
-* Maior segurança dos dados
+### Visualização da POC (LOG)
 
-* Hierarquia clara, com pastas e projetos
+![POC](../img/image-1.png)
+<br/>
+<br/>
 
-* Políticas de segurança centralizadas
+## 📌 Gerenciamento de permissões via Tags 
 
-* Capacidade de compartilhar recursos entre projetos
+Ao ter a catalogação dos dados no dataplex com as tags necessárias, é possível realizar o permissionamento atrevés delas, determinando quem pode ou não visualizar os dados marcados por aquelas tags. 
 
-* Melhor visualização de recursos e custos
+![Tags em Colunas](../img/column_tag.png)
 
-* Facilidade no gerenciamento de grupo ou pessoas
+* Necessário **conta Organizacional**.
 
-### > Google Admin Console
 
-Possui funcionalidades de monitoramento e relatórios ajudam na tomada de decisões baseadas em dados, e a segurança é aprimorada com a implementação eficaz de políticas. Assim, a Google Admin Console torna o gerenciamento do GCP mais eficiente e seguro.
 
-![Console Admin](../img/img6.jpeg)
-
-### > Grupos
-
-*Gerenciamento de grupos via Admin*
-![Grupos via Amin](../img/img7.jpeg)
-
-*Gerenciamento de grupos via GCP*
-![Grupos via GCP](../img/img8.jpeg)
-
-*Grupo no GCP*
-![Dentro do grupo no GCP](../img/img9.jpeg)
-
-### > PAM
-
-*Gerenciador de permissões temporárias*
-![Gerenciador PAM](../img/img10.jpeg)
-
-### > Migração de projetos
-
-*Gerenciador de recursos*
-![Gerenciador de recursos](../img/img11.jpeg)
+## 🏢 [Organização GCP](../relatorios/Organização_GCP.md)
 
