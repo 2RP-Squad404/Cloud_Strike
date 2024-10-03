@@ -72,8 +72,6 @@ Durante a sprint testamos diversas formas de realizar essa atividade, sendo elas
 * **Utilização do Cloud Run com Scheduler -** Realizado o mascaramento, porém a function roda um script que faz um `UPDATE` via SQL agendado via **Scheduler** para atualizar os dados da coluna sensível, o que seria trabalhoso e custoso para realizar em todas as tabelas.
 
 ![Dados mascarados via Cloud Run com Scheduler](../img/mock_data_mask.png)
-
-* **Utilização do DLP para mascaramento no BigQuery via python -** Está andamento a criação de um script `python` para mascarar os dados de tabelas do BigQuery utilizando o DLP. Atualmente existe apenas a necessidade de autenticar o permissionamento e autenticação de usuário para ser possível realizar os primeiros testes.
 <br/>
 <br/>
 
