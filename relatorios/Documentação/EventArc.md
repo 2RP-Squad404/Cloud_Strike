@@ -31,7 +31,7 @@ Um evento tem as seguintes características:
 
 Em um sistema orientado a eventos, os eventos são gerados porprodutores de eventos , ingerido e filtrado por umroteador de eventos (ou agente) e fazer uma distribuição para osconsumidores de eventos (ou coletores) Os eventos são encaminhados para os assinantes definidos por um ou mais acionadores correspondentes. Esses três componentes (produtores de eventos, roteador de eventos, consumidores de eventos) são separados e podem ser implantados, atualizados e escalonados de maneira independente:
 
-![Imagem](/Reports/imagens/Captura%20de%20tela%202024-10-07%20141923.png)
+![Imagem](../img/eventArc.png)
 
 #
 # Fluxograma de migração (sem processamento de dados)

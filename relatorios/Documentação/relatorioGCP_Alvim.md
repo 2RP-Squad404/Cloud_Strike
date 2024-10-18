@@ -1,49 +1,83 @@
 # Relatório de Estudos
 **Nome do Estagiário:** Gabriel Alvim  
-**Data:** 26/09/2024
+**Data:** 11/09/2024
 #
-# Gestão no Google Cloud Platform
-A governança de dados no Google Cloud Platform (GCP) é essencial para a organização eficaz das informações, sendo estruturada em torno de pastas e projetos. A arquitetura do GCP permite que as organizações definam hierarquias claras, onde as pastas funcionam como contêineres para projetos, facilitando a gestão e a aplicação de políticas de governança. Essa estrutura promove um controle centralizado sobre acesso e permissões, assegurando que as práticas de segurança e conformidade sejam seguidas. Assim, a relação entre governança de dados e a arquitetura do GCP não apenas otimiza o gerenciamento de recursos, mas também fortalece a integridade e a proteção dos dados dentro da organização.
+# Governança de Dados
+A governança de dados refere-se ao conjunto de práticas, políticas e processos que garantem a gestão adequada dos dados dentro de uma organização. O objetivo é assegurar que os dados sejam precisos, acessíveis, seguros e usados de maneira eficiente e ética. Sendo crucial para assegurar que os dados sejam geridos de forma eficaz e que contribuam para os objetivos estratégicos da organização, ao mesmo tempo que mitigam riscos e garantem conformidade com as normas e regulamentações aplicáveis
 
-**Arquitetura GCP (Google Cloud Platform)**
-![Imagem](/Reports/imagens/arquitetura.jpeg)
+## DAMA (Governança de Dados)
 
-## Importância Organizacional
-Criar uma organização no Google Cloud Platform 
-(GCP) é fundamental para projetos de grande escala, pois proporciona uma estrutura hierárquica clara e eficiente para gerenciar recursos e dados. Uma organização permite que múltiplos projetos sejam agrupados de forma lógica, facilitando a administração e o controle.
+- **Qualidade dos Dados**: Estabelecer padrões e processos para garantir que os dados sejam precisos, completos e confiáveis.
 
-**Hierarquia GCP (Google Cloud Platform)**
-![Imagem](/Reports/imagens/hierarquia.jpeg)
+- **Segurança dos Dados**: Implementar medidas para proteger os dados contra acesso não autorizado, perda ou vazamentos. Isso inclui controles de acesso, criptografia e políticas de privacidade.
 
-## Organização GCP (Google Cloud Platform)
-![Imagem](/Reports/imagens/organização.jpeg)
+- **Compliance e Regulamentação**: Garantir que a gestão de dados esteja em conformidade com leis e regulamentos, como o GDPR na União Europeia ou a LGPD no Brasil.
 
-## Pastas GCP (Google Cloud Platform)
-![Imagem](/Reports/imagens/pasta.jpeg)
+- **Estrutura e Responsabilidade**: Definir papéis e responsabilidades claros para a gestão dos dados dentro da organização. Isso pode incluir a nomeação de um Chief Data Officer (CDO) ou a formação de comitês de governança.
 
-## Projeto GCP (Google Cloud Platform)
-![Imagem](/Reports/imagens/projeto.jpeg)
+- **Armazenamento e Arquivamento**: Gerenciar onde e como os dados são armazenados, garantindo que sejam mantidos de maneira adequada e eficiente.
 
-## Papéis GCP (Google Cloud Platform)
-![Imagem](/Reports/imagens/papeis.jpeg)
+- **Acesso e Uso**: Estabelecer políticas sobre quem pode acessar os dados e como eles devem ser utilizados, para garantir que o acesso seja apropriado e os dados sejam usados de forma ética.
 
-# Fluxograma de migração (sem processamento de dados) v.01
+- **Documentação e Metadados**: Manter uma documentação clara e detalhada sobre os dados, incluindo o que são, de onde vêm, e como devem ser usados. Isso inclui o gerenciamento de metadados, que são dados sobre os próprios dados.
+
+## Framework (Governança de Dados)
+![Imagem](../img/Data_Gov.png)
+
+## Arquitetura Data Warehouse Platform (GCP)
+![Imagem](../img/GCP_Integ.png)
+
+## Segurança DLP (Data Loss Prevention)
+![Image](../img/Captura%20de%20tela%202024-09-13%20130057.png)
+
+## Dataplex
+Dataplex é uma solução de governança e gerenciamento de dados que ajuda as organizações a gerenciar, governar e analisar dados em diversos ambientes de armazenamento. Ele fornece uma plataforma centralizada para definir e aplicar políticas de dados, inclui ferramentas para descobrir e catalogar dados, e melhora a qualidade e integridade dos dados. O Dataplex também facilita a análise de dados, assegura a segurança e conformidade, e ajuda no gerenciamento de data lakes. O objetivo é simplificar a gestão de dados em grande escala e permitir que as organizações se concentrem em obter insights valiosos.
+
+## Recursos Utilizados:
+- [GCP Doc.](https://cloud.google.com/dataplex?hl=pt-BR)
+- [Stackoverflow](https://stackoverflow.com/questions/78426963/confusion-about-metadata-in-google-dataplex-and-data-catalog)
+- [Aula](https://www.youtube.com/watch?v=5-NtozDQVBQ&t=1096s)
+#
+
+# Fluxograma de migração (sem processamento de dados)
+
 ```mermaid
 flowchart TD
-    A[Cloudera]
-    A -->|Transf. de Dados| B[BigQuery - Armazenar Dados]
+    subgraph Migração de Dados
+        A[Cloudera] -->|Transf. de Dados| B[BigQuery - Armazenar Dados]
+        B --> C[Dataplex - Catalogação e Governança]
+    end
 
-    B --> C[Google Cloud Dataplex]
+    subgraph Segurança e Permissões
+        C -->|Criptografia e Mascaramento| D[DLP - Mascaramento de Dados Sensíveis]
+        C -->|Policy Tags e IAM| E[Controle de Acesso - IAM + Tags]
+        E --> F[Usuários/Grupos de Acesso - DataEng, DataAnalytic, DevOps, DBA, FinOps]
+        E --> G[Permissões por Tags - Área e Funções]
+    end
 
-    C -->|DC+Asset Discovery| D[Catalogação Automática]
-    C -->|DC+Policy Tag Manager| E[Orq. Permissões Tags]
-    
-    E -->|Google Cloud IAM| F[Controle de Acesso IAM]
-    F -->|Google Cloud IAM| G[Usuários/Grupos de Acesso]
+    subgraph Automação de Processos
+        H[Cloud Scheduler] -->|Pub/Sub| I[Pub/Sub - Mensagens Criptografadas]
+        I -->|Cloud Functions| J[Cloud Functions - Descriptografia e Processamento]
+    end
 
-    C --> H[Google Cloud Monitoring]
-    B --> H
+    subgraph Processamento e Views
+        B --> K[BigQuery API - Consultar Dados Eventos]
+        K -->|Python Script| L[VertexAI - Geração de Query Automática]
+        L --> M[Upload Query - BigQuery]
+        M -->|Views Automatizadas| N[BigQuery Views]
+    end
 
+    subgraph Governança e Monitoramento
+        C --> O[Dataplex - Monitoramento de Dados]
+        O --> P[Cloud Monitoring - Alertas e Dashboards]
+        P -->|Exportação de Métricas| Q[BigQuery - Armazenar Métricas]
+        Q --> R[ETL - Validação de Reservas e Distribuição de Slots]
+    end
+
+    subgraph Otimização de Custos e Labels
+        R --> S[Dataform - Implementação de Labels e Tagueamentos]
+        S --> T[Redução de Custos - Análise e Otimização de Slots BigQuery]
+    end
 ```
 
 # Descrição do Fluxograma de Migração de Dados com BigQuery e Dataplex
